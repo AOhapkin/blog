@@ -1,6 +1,7 @@
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 // import Header from '../Header/Header';
 import ArticlesList from '../ArticlesList/ArticlesList'
+import ArticlePage from '../ArticlePage/ArticlePage';
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={ArticlesList}/>
         <Route exact path="/articles" component={ArticlesList}/>
+        <Route exact path="/articles/:slug" component={ArticlePage} />
       </Switch>
     </Router>
   )

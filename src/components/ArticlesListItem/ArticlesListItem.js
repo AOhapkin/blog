@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link } from 'react-router-dom'
 import { v1 as uuidv1 } from 'uuid';
 
 import classes from './ArticlesListItem.module.scss'
@@ -60,7 +60,7 @@ const ArticlesListItem = ({ item }) => {
         <img
           className={classes.item__avatar}
           src={image}
-          alt="avatar"
+          alt="user avatar"
         />
       </div>
     </li>
