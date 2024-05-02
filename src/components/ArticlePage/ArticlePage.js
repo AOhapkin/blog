@@ -6,7 +6,7 @@ import { ReactMarkdown } from 'react-markdown'
 
 import classes from './ArticlePage.module.scss'
 import { formatDate } from '../../utilities/utilities';
-import { Просмотр статьи с полным текстом } from '../../redux/actions/actionCreators'
+import { fetchArticleBySlug } from '../../redux/actions/actionCreators'
 
 const ArticlePage = () => {
   const articleData = useSelector((state) => state.articlesReducers.article)
