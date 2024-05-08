@@ -199,7 +199,7 @@ const SignUp = () => {
                 validate: (value) => value || 'Confirm your consent',
               })}
             />
-            <span className={classes.sign_up__box_agreement_text}>
+            <span className={classes.sign_up__agreement_text}>
               I agree to the processing of my personal information
             </span>
           </div>
@@ -210,14 +210,15 @@ const SignUp = () => {
               <p className={classes.form_text_error}>{message}</p>
             )}
           />
-          <button className={classes.sign_up__button_send_form} type="submit">
+
+          <button className={classes.sign_up__submit} type="submit">
             Create
           </button>
         </form>
 
         <p className={classes.account_question}>
           Already have an account?
-          <Link to="/sign-in" className={classes.sing_in__link_sign_in}>
+          <Link to="/sign-in" className={classes.account_question__link}>
             Sign In
           </Link>
           .
