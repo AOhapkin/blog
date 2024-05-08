@@ -24,7 +24,7 @@
       color: rgba(38, 38, 38, 1);
     }
 
-    &__forms {
+    &__form {
       display: flex;
       flex-direction: column;
     }
@@ -45,12 +45,11 @@
       margin-top: 21px;
     }
 
-    &__input_username, &__input_email,
-    &__input_password, &__input_password_repeat {
-      height: 40px;
-      width: 320px;
+    &__input {
       margin-top: 2px;
       padding: 8px 12px;
+      height: 40px;
+      width: 320px;
       border: 1px solid rgba(217, 217, 217, 1);
       border-radius: 4px;
       font-family: 'Roboto', sans-serif;
@@ -67,7 +66,7 @@
       border-radius: 4px;
     }
 
-    &__box_agreement {
+    &__agreement {
       margin-top: 21px;
       border-top: 1px solid rgba(232, 232, 232, 1);
       padding-top: 8px;
@@ -103,16 +102,6 @@
       color: rgba(255, 255, 255, 1);
     }
 
-    &__account_question {
-      margin-top: 8px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 20px;
-      text-align: center;
-      color: rgba(140, 140, 140, 1);
-    }
-
     &__link_sign_in {
       font-family: 'Roboto', sans-serif;
       font-size: 12px;
@@ -121,18 +110,28 @@
       text-align: center;
       color:  rgba(24, 144, 255, 1);
     }
+}
 
-    &__text_error {
-      margin-top: 2px;
-      display: flex;
-      color: #bf1650;
-      font-family: 'Roboto', sans-serif;
-      font-size: 14px;
-    }
+.form_text_error {
+  margin-top: 2px;
+  display: flex;
+  color: #bf1650;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
 
-    &__text_error::before {
-      display: inline;
-      content: "⚠ ";
-      padding-right: 5px;
-    }
+.form_text_error::before {
+  display: inline;
+  content: "⚠ ";
+  padding-right: 5px;
+}
+
+.account_question {
+  margin-top: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(140, 140, 140, 1);
 }
