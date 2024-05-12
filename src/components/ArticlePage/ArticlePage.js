@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { v1 as uuidv1 } from 'uuid';
-import { ReactMarkdown } from 'react-markdown'
+import Markdown from 'react-markdown'
 
 import classes from './ArticlePage.module.scss'
 import { formatDate } from '../../utilities/utilities';
@@ -78,7 +78,7 @@ const ArticlePage = () => {
       </div>
 
       <div className={classes.article__info_markdown}>
-        <ReactMarkdown>{articleMarkdown}</ReactMarkdown>
+        <Markdown>{articleMarkdown}</Markdown>
       </div>
     </section>
   )

@@ -15,6 +15,10 @@ import {
   POST_LOGIN_SERVER_FAIL,
   LOGOUT,
   GET_CURRENT_USER,
+  PUT_PROFILE_UPDATE_REQUEST,
+  PUT_PROFILE_UPDATE_SUCCESS,
+  PUT_PROFILE_UPDATE_FAILURE,
+  PUT_PROFILE_UPDATE_SERVER_FAIL,
 } from './actionTypes'
 import getArticlesByPage from '../../service/getArticles'
 import getArticle from '../../service/getArticle'
@@ -22,6 +26,7 @@ import blogAxiosInstance from '../../service/axios'
 import postNewUser from '../../service/postNewUser'
 import postLoginUser from '../../service/postLoginUser'
 import getCurrentUser from '../../service/getCurrentUser'
+import sendProfileUpdate from '../../service/sendProfileUpdate'
 
 // All articles
 export const fetchArticlesRequest = () => ({
@@ -158,6 +163,36 @@ export const setCurrentUserAction = () => {
       dispatch(setCurrentUser(user))
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+// Profile edit
+
+export const putUpdateUserRequest = () => ({ type: PUT_PROFILE_UPDATE_REQUEST })
+export const putUpdateUserSuccess = (user) => ({
+  type: PUT_PROFILE_UPDATE_SUCCESS,
+  payload: user,
+})
+export const putUpDateUserFail = (error) => ({
+  type: PUT_PROFILE_UPDATE_FAILURE,
+  payload: error,
+})
+export const putUpdateUserServerFail = (error) => ({
+  type: PUT_PROFILE_UPDATE_SERVER_FAIL,
+  payload: error,
+})
+
+export const updateUser = (dataUser) => {
+  return async (dispatch) => {
+    try {
+      dispatch(putUpdateUserRequest())
+      const res = await sendProfileUpdate(dataUser)
+      const { user } = res.data
+      dispatch(putUpdateUserSuccess(user))
+    } catch (error) {
+      if (error.message === '422') dispatch(putUpdateUserServerFail(error))
+      else dispatch(putUpDateUserFail(error.message))
     }
   }
 }

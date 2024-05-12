@@ -1,5 +1,6 @@
-import { blogAxiosInstance as blogApi } from './axios'
+import blogAxiosInstance from './axios'
 
-const getArticle = async (slug) => await blogApi.get(`articles/${slug}`)
+const getArticle = async (slug) => 
+  await blogAxiosInstance.get(`articles/${slug}`)
 
 export default getArticle

@@ -9,6 +9,10 @@ import {
   POST_LOGIN_SERVER_FAIL,
   LOGOUT,
   GET_CURRENT_USER,
+  PUT_PROFILE_UPDATE_REQUEST,
+  PUT_PROFILE_UPDATE_SUCCESS,
+  PUT_PROFILE_UPDATE_FAILURE,
+  PUT_PROFILE_UPDATE_SERVER_FAIL,
 } from '../actions/actionTypes'
 
 const userInitState = {
@@ -96,8 +100,29 @@ const userReducers = (state = userInitState, action) => {
         loading: false,
         error: null,
       }
+    // get current user
     case GET_CURRENT_USER:
       return { ...state, isLogin: true, user: action.payload }
+    // Profile update
+    case PUT_PROFILE_UPDATE_REQUEST:
+      return { ...state, loading: true, error: null }
+    case PUT_PROFILE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        user: action.payload,
+        server: {
+          errors: {
+            username: null,
+            email: null,
+          },
+        },
+      }
+    case PUT_PROFILE_UPDATE_FAILURE:
+      return { ...state, loading: false, error: action.payload }
+    case PUT_PROFILE_UPDATE_SERVER_FAIL:
+      return { ...state, loading: false, server: action.payload }
     default:
       return state
   }
