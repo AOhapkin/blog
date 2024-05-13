@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'antd'
 
-import classes from './AlertError.module.scss'
+import classes from './ErrorAlert.module.scss'
 
 const ErrorAlert = ({ messageText }) => {
   return (

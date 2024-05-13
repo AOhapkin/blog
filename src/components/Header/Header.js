@@ -7,9 +7,9 @@ import defaultUserAvatar from '../../resources/defaultUserAvatar.svg'
 import { setCurrentUserAction, logout } from '../../redux/actions/actionCreators'
 
 const Header = () => {
-  const isLogin = useSelector((state) => state.reducerUser.isLogin)
-  const currentUsername = useSelector((state) => state.reducerUser.user.username)
-  const currentImage = useSelector((state) => state.reducerUser.user.image)
+  const isLogin = useSelector((state) => state.userReducers.isLogin)
+  const currentUsername = useSelector((state) => state.userReducers.user.username)
+  const currentImage = useSelector((state) => state.userReducers.user.image)
   const history = useHistory()
   const dispatch = useDispatch()
 

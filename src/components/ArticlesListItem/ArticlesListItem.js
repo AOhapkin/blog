@@ -19,7 +19,7 @@ const ArticlesListItem = ({ item }) => {
     title,
   } = item
   const { username, image } = author
-  const isLogin = useSelector((state) => state.userReducer.isLogin)
+  const isLogin = useSelector((state) => state.userReducers.isLogin)
   const dispatch = useDispatch()
   
   useEffect(() => {}, [slug, favorited, favoritesCount])

@@ -63,7 +63,7 @@ export const fetchArticlesFailure = (error) => ({
   payload: error,
 })
 
-export const fetchData = (page) => {
+export const fetchDataByPage = (page) => {
   return async (dispatch) => {
     try {
       dispatch(fetchArticlesRequest())

@@ -5,13 +5,13 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
 import {
-  createArticle,
+  createNewArticle,
   getArticleForEdit,
   updateArticle,
 } from '../../redux/actions/actionCreators'
-import AlertError from '../AlertError/AlertError'
-import Spinner from '../SpinnerLoad/SpinnerLoad'
-import classes from './ArticleCreateEdit.module.scss'
+import ErrorAlert from '../ErrorAlert/ErrorAlert'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
+import classes from './ArticleEditior.module.scss'
 
 const ArticleEditior = () => {
   const loading = useSelector((state) => state.reducerArticles.loading)
@@ -61,7 +61,7 @@ const ArticleEditior = () => {
         tagList: formatTagList,
       },
     }
-    if (path === '/new-article') dispatch(createArticle(article))
+    if (path === '/new-article') dispatch(createNewArticle(article))
     else {
       dispatch(updateArticle(article, slug))
     }
@@ -93,8 +93,8 @@ const ArticleEditior = () => {
 
   return (
     <>
-      {error ? <AlertError message={error} /> : null}
-      {loading && !error ? <Spinner /> : null}
+      {error ? <ErrorAlert message={error} /> : null}
+      {loading && !error ? <LoadingSpinner /> : null}
       <div className={classes.article}>
         {path !== '/new-article' ? (
           <h1 className={classes.article__title}>Edit article</h1>
