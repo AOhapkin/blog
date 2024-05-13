@@ -13,6 +13,13 @@ import {
   PUT_EDIT_ARTICLE_SUCCES,
   PUT_EDIT_ARTICLE_FAILURE,
   PUT_EDIT_ARTICLE_SERVER_FAIL,
+  DELETE_ARTICLE_REQUEST,
+  DELETE_ARTICLE_SUCCESS,
+  DELETE_ARTICLE_FAILURE,
+  DELETE_ARTICLE_SERVER_FAIL,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_REQUEST,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_SUCCESS,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_FAILURE,
 } from '../actions/actionTypes'
 
 const articlesInitState = {
@@ -68,6 +75,18 @@ const articlesReducers = (state = articlesInitState, action) => {
           return { ...state, loading: false, error: action.payload }
         case POST_NEW_ARTICLE_SERVER_FAIL:
           return { ...state, loading: false, server: action.payload }
+        // Fetch article by slug FOR EDIT
+        case FETCH_ARTICLE_BY_SLUG_FOR_EDIT_REQUEST:
+          return { ...state, loading: true, error: null }
+        case FETCH_ARTICLE_BY_SLUG_FOR_EDIT_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            article: { ...action.payload },
+            flag: true,
+          }
+        case FETCH_ARTICLE_BY_SLUG_FOR_EDIT_FAILURE:
+          return { ...state, loading: false, error: action.payload }
         // Edit article
         case PUT_EDIT_ARTICLE_REQUEST:
           return { ...state, loading: true, error: null }
@@ -76,6 +95,15 @@ const articlesReducers = (state = articlesInitState, action) => {
         case PUT_EDIT_ARTICLE_FAILURE:
           return { ...state, loading: false, error: action.payload }
         case PUT_EDIT_ARTICLE_SERVER_FAIL:
+          return { ...state, loading: false, server: action.payload }
+        // Delete article
+        case DELETE_ARTICLE_REQUEST:
+          return { ...state, loading: true, error: null }
+        case DELETE_ARTICLE_SUCCESS:
+          return { ...state, loading: false, error: null, statusDelete: true }
+        case DELETE_ARTICLE_FAILURE:
+          return { ...state, loading: false, error: action.payload }
+        case DELETE_ARTICLE_SERVER_FAIL:
           return { ...state, loading: false, server: action.payload }
     default:
       return state

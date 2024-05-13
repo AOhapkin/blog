@@ -6,8 +6,8 @@ import { ErrorMessage } from '@hookform/error-message'
 
 import {
   createArticle,
-  getAnArticleEdit,
-  upDateArticle,
+  getArticleForEdit,
+  updateArticle,
 } from '../../redux/actions/actionCreators'
 import AlertError from '../AlertError/AlertError'
 import Spinner from '../SpinnerLoad/SpinnerLoad'
@@ -63,7 +63,7 @@ const ArticleEditior = () => {
     }
     if (path === '/new-article') dispatch(createArticle(article))
     else {
-      dispatch(upDateArticle(article, slug))
+      dispatch(updateArticle(article, slug))
     }
   }
 
@@ -80,7 +80,7 @@ const ArticleEditior = () => {
         history.push('/articles')
       }
       
-      dispatch(getAnArticleEdit(slug))
+      dispatch(getArticleForEdit(slug))
       setValue('title', title)
       setValue('description', description)
       setValue('body', body)

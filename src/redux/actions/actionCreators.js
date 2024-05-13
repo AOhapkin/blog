@@ -23,12 +23,19 @@ import {
   POST_NEW_ARTICLE_SUCCESS,
   POST_NEW_ARTICLE_FAILURE,
   POST_NEW_ARTICLE_SERVER_FAIL,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_REQUEST,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_SUCCESS,
+  FETCH_ARTICLE_BY_SLUG_FOR_EDIT_FAILURE,
   PUT_EDIT_ARTICLE_REQUEST,
   PUT_EDIT_ARTICLE_SUCCES,
   PUT_EDIT_ARTICLE_FAILURE,
   PUT_EDIT_ARTICLE_SERVER_FAIL,
+  DELETE_ARTICLE_REQUEST,
+  DELETE_ARTICLE_SUCCESS,
+  DELETE_ARTICLE_FAILURE,
+  DELETE_ARTICLE_SERVER_FAIL,
 } from './actionTypes'
-import getArticlesByPage from '../../service/getArticles'
+import getArticlesByPage from '../../service/getArticlesByPage'
 import getArticle from '../../service/getArticle'
 import blogAxiosInstance from '../../service/axios'
 import postNewUser from '../../service/postNewUser'
@@ -37,23 +44,22 @@ import getCurrentUser from '../../service/getCurrentUser'
 import sendProfileUpdate from '../../service/sendProfileUpdate'
 import postCreateNewArticle from '../../service/postCreateNewArticle'
 import putUpdateArticle from '../../service/putUpdateArticle'
+import deleteArticleRequest from '../../service/deleteArticleRequest'
 
 // All articles
 export const fetchArticlesRequest = () => ({
   type: FETCH_ALL_ARTICLES_REQUEST,
 })
-
 export const fetchArticlesSuccess = (articles, articlesCount) => ({
   type: FETCH_ALL_ARTICLES_SUCCESS,
   payload: { articles, articlesCount },
 })
-
 export const fetchArticlesFailure = (error) => ({
   type: FETCH_ALL_ARTICLES_FAILURE,
   payload: error,
 })
 
-export const fetchDataByPage = (page) => {
+export const fetchData = (page) => {
   return async (dispatch) => {
     try {
       dispatch(fetchArticlesRequest())
@@ -240,6 +246,33 @@ export const createNewArticle = (newArticleData) => {
   }
 }
 
+// Get article for edit
+
+export const fetchArticleSlugEditRequest = () => ({
+  type: FETCH_ARTICLE_BY_SLUG_FOR_EDIT_REQUEST,
+})
+export const fetchArticleSlugEditSuccess = (article) => ({
+  type: FETCH_ARTICLE_BY_SLUG_FOR_EDIT_SUCCESS,
+  payload: article,
+})
+export const fetchArticleSlugEditFail = (error) => ({
+  type: FETCH_ARTICLE_BY_SLUG_FOR_EDIT_FAILURE,
+  payload: error,
+})
+
+export const getArticleForEdit = (slug) => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchArticleSlugEditRequest())
+      const res = await getArticle(slug)
+      const { article } = res.data
+      dispatch(fetchArticleSlugEditSuccess(article))
+    } catch (error) {
+      dispatch(fetchArticleSlugEditFail(error.message))
+    }
+  }
+}
+
 // Article edit
 
 export const putEditArticle = () => ({ type: PUT_EDIT_ARTICLE_REQUEST })
@@ -269,6 +302,39 @@ export const updateArticle = (articleUpdatedData, slug) => {
         dispatch(putEditArticleServerFail(error))
       else 
         dispatch(putEditArticleFail(error.message))
+    }
+  }
+}
+
+// Delete article
+
+export const fetchDeleteArticle = () => ({ type: DELETE_ARTICLE_REQUEST })
+
+export const fetchDeleteArticleSuccess = () => ({
+  type: DELETE_ARTICLE_SUCCESS,
+})
+
+export const fetchDeleteArticleFail = (error) => ({
+  type: DELETE_ARTICLE_FAILURE,
+  payload: error,
+})
+
+export const fetchDeleteArticleServerFail = (error) => ({
+  type: DELETE_ARTICLE_SERVER_FAIL,
+  payload: error,
+})
+
+export const deleteArticle = (slug) => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchDeleteArticle())
+      await deleteArticleRequest(slug)
+      dispatch(fetchDeleteArticleSuccess())
+    } catch (error) {
+      if (error.message === '422')
+        dispatch(fetchDeleteArticleServerFail(error))
+      else
+        dispatch(fetchDeleteArticleFail(error.message))
     }
   }
 }
