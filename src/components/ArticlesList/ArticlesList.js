@@ -6,11 +6,12 @@ import { Pagination } from "antd";
 import classes from './ArticlesList.module.scss'
 import { fetchDataByPage } from '../../redux/actions/actionCreators'
 import ArticlesListItem from '../ArticlesListItem/ArticlesListItem'
+import ErrorAlert from '../ErrorAlert/ErrorAlert'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
-// TODO error or loading handling
 const ArticlesList = () => {
   const articlesReducers = useSelector((state) => state.articlesReducers)
-  const { articles, articlesCount } = articlesReducers
+  const { articles, articlesCount, error, loading } = articlesReducers
   const [currentPage, setCurrentPage] = useState(1)
   const dispatch = useDispatch()
 
@@ -20,12 +21,14 @@ const ArticlesList = () => {
 
   return (
     <main className={classes.main}>
-      <ul className={classes.main_list}>
+      {error ? <ErrorAlert message={error} /> : null}
+      {loading && !error ? <LoadingSpinner /> : null}
+      <ul className={classes.main__list}>
         {articles.map((item) => 
           <ArticlesListItem item={item} key={uuidv1()} />
         )}
       </ul>
-      <div className={classes.main_pagination}>
+      <div className={classes.main__pagination}>
         <Pagination
           defaultCurrent={1}
           current={currentPage}

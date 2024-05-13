@@ -34,6 +34,8 @@ import {
   DELETE_ARTICLE_SUCCESS,
   DELETE_ARTICLE_FAILURE,
   DELETE_ARTICLE_SERVER_FAIL,
+  POST_ARTICLE_LIKE,
+  DELETE_ARTICLE_LIKE
 } from './actionTypes'
 import getArticlesByPage from '../../service/getArticlesByPage'
 import getArticle from '../../service/getArticle'
@@ -45,6 +47,8 @@ import sendProfileUpdate from '../../service/sendProfileUpdate'
 import postCreateNewArticle from '../../service/postCreateNewArticle'
 import putUpdateArticle from '../../service/putUpdateArticle'
 import deleteArticleRequest from '../../service/deleteArticleRequest'
+import postFavoriteArticleRequest from '../../service/postFavoriteArticleRequest'
+import deleteArticleLikeRequest from '../../service/deleteArticleLikeRequest'
 
 // All articles
 export const fetchArticlesRequest = () => ({
@@ -335,6 +339,44 @@ export const deleteArticle = (slug) => {
         dispatch(fetchDeleteArticleServerFail(error))
       else
         dispatch(fetchDeleteArticleFail(error.message))
+    }
+  }
+}
+
+// Like
+
+export const postArticleLike = (article) => ({
+  type: POST_ARTICLE_LIKE,
+  payload: article,
+})
+
+export const deleteArticleLike = (article) => ({
+  type: DELETE_ARTICLE_LIKE,
+  payload: article,
+})
+
+export const likeArticle = (slug) => {
+  return async (dispatch) => {
+    try {
+      const res = await postFavoriteArticleRequest(slug)
+      const { article } = res.data
+      dispatch(postArticleLike(article))
+    } catch (error) {
+      // add like fail
+      console.error(error)
+    }
+  }
+}
+
+export const unlikeArticle = (slug) => {
+  return async (dispatch) => {
+    try {
+      const res = await deleteArticleLikeRequest(slug)
+      const { article } = res.data
+      dispatch(deleteArticleLike(article))
+    } catch (error) {
+      // add unlike fail
+      console.error(error)
     }
   }
 }

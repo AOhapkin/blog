@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { v1 as uuidv1 } from 'uuid';
 
 import classes from './ArticlesListItem.module.scss'
 import { formatDate } from '../../utilities/utilities';
+import { likeArticle, unlikeArticle } from '../../redux/actions/actionCreators'
 
 const ArticlesListItem = ({ item }) => {
   const {
@@ -17,8 +19,14 @@ const ArticlesListItem = ({ item }) => {
     title,
   } = item
   const { username, image } = author
+  const isLogin = useSelector((state) => state.userReducer.isLogin)
+  const dispatch = useDispatch()
   
   useEffect(() => {}, [slug, favorited, favoritesCount])
+
+  const handleLikeClick = () => {
+    !favorited ? dispatch(likeArticle(slug)) : dispatch(unlikeArticle(slug))
+  }
 
   return (
     <li className={classes.item}>
@@ -34,6 +42,8 @@ const ArticlesListItem = ({ item }) => {
                   ? classes.item__button_like_active
                   : classes.item__button_like
               }
+              onClick={() => handleLikeClick()}
+              disabled={!isLogin}
             ></button>
             <p className={classes.item__counter_like}>{favoritesCount}</p>
           </label>
@@ -41,9 +51,9 @@ const ArticlesListItem = ({ item }) => {
         <div className={classes.item__box_tags}>
           {tagList.map((el) => {
             return (
-              <p className={classes.item__tag} key={uuidv1()}>
+              <span className={classes.item__tag} key={uuidv1()}>
                 {el}
-              </p>
+              </span>
             )
           })}
         </div>

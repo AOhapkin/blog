@@ -20,6 +20,8 @@ import {
   FETCH_ARTICLE_BY_SLUG_FOR_EDIT_REQUEST,
   FETCH_ARTICLE_BY_SLUG_FOR_EDIT_SUCCESS,
   FETCH_ARTICLE_BY_SLUG_FOR_EDIT_FAILURE,
+  POST_ARTICLE_LIKE,
+  DELETE_ARTICLE_LIKE,
 } from '../actions/actionTypes'
 
 const articlesInitState = {
@@ -105,6 +107,35 @@ const articlesReducers = (state = articlesInitState, action) => {
           return { ...state, loading: false, error: action.payload }
         case DELETE_ARTICLE_SERVER_FAIL:
           return { ...state, loading: false, server: action.payload }
+        // Like 
+        case POST_ARTICLE_LIKE:
+          return {
+            ...state,
+            articles: state.articles.map((el) => {
+              if (el.slug === action.payload.slug)
+                return {
+                  ...el,
+                  favorited: true,
+                  favoritesCount: action.payload.favoritesCount,
+                }
+              return el
+            }),
+            article: action.payload,
+          }
+        case DELETE_ARTICLE_LIKE:
+          return {
+            ...state,
+            articles: state.articles.map((el) => {
+              if (el.slug === action.payload.slug)
+                return {
+                  ...el,
+                  favorited: false,
+                  favoritesCount: action.payload.favoritesCount,
+                }
+              return el
+            }),
+            article: action.payload,
+          }
     default:
       return state
   }
