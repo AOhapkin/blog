@@ -19,6 +19,14 @@ import {
   PUT_PROFILE_UPDATE_SUCCESS,
   PUT_PROFILE_UPDATE_FAILURE,
   PUT_PROFILE_UPDATE_SERVER_FAIL,
+  POST_NEW_ARTICLE_REQUEST,
+  POST_NEW_ARTICLE_SUCCESS,
+  POST_NEW_ARTICLE_FAILURE,
+  POST_NEW_ARTICLE_SERVER_FAIL,
+  PUT_EDIT_ARTICLE_REQUEST,
+  PUT_EDIT_ARTICLE_SUCCES,
+  PUT_EDIT_ARTICLE_FAILURE,
+  PUT_EDIT_ARTICLE_SERVER_FAIL,
 } from './actionTypes'
 import getArticlesByPage from '../../service/getArticles'
 import getArticle from '../../service/getArticle'
@@ -27,6 +35,8 @@ import postNewUser from '../../service/postNewUser'
 import postLoginUser from '../../service/postLoginUser'
 import getCurrentUser from '../../service/getCurrentUser'
 import sendProfileUpdate from '../../service/sendProfileUpdate'
+import postCreateNewArticle from '../../service/postCreateNewArticle'
+import putUpdateArticle from '../../service/putUpdateArticle'
 
 // All articles
 export const fetchArticlesRequest = () => ({
@@ -193,6 +203,72 @@ export const updateUser = (dataUser) => {
     } catch (error) {
       if (error.message === '422') dispatch(putUpdateUserServerFail(error))
       else dispatch(putUpDateUserFail(error.message))
+    }
+  }
+}
+
+// New article
+
+export const postArticle = () => ({ type: POST_NEW_ARTICLE_REQUEST })
+
+export const postArticleSuccess = (article) => ({
+  type: POST_NEW_ARTICLE_SUCCESS,
+  payload: article,
+})
+
+export const postArticleFail = (error) => ({
+  type: POST_NEW_ARTICLE_FAILURE,
+  payload: error,
+})
+
+export const postArticleServerFail = (error) => ({
+  type: POST_NEW_ARTICLE_SERVER_FAIL,
+  payload: error,
+})
+
+export const createNewArticle = (newArticleData) => {
+  return async (dispatch) => {
+    try {
+      dispatch(postArticle())
+      const res = await postCreateNewArticle(newArticleData)
+      const { article } = res.data
+      dispatch(postArticleSuccess(article))
+    } catch (error) {
+      if (error.message === '422') dispatch(postArticleServerFail(error))
+      else dispatch(postArticleFail(error.message))
+    }
+  }
+}
+
+// Article edit
+
+export const putEditArticle = () => ({ type: PUT_EDIT_ARTICLE_REQUEST })
+
+export const putEditArticleSuccess = () => ({
+  type: PUT_EDIT_ARTICLE_SUCCES,
+})
+
+export const putEditArticleFail = (error) => ({
+  type: PUT_EDIT_ARTICLE_FAILURE,
+  payload: error,
+})
+
+export const putEditArticleServerFail = (error) => ({
+  type: PUT_EDIT_ARTICLE_SERVER_FAIL,
+  payload: error,
+})
+
+export const updateArticle = (articleUpdatedData, slug) => {
+  return async (dispatch) => {
+    try {
+      dispatch(putEditArticle())
+      await putUpdateArticle(articleUpdatedData, slug)
+      dispatch(putEditArticleSuccess())
+    } catch (error) {
+      if (error.message === '422') 
+        dispatch(putEditArticleServerFail(error))
+      else 
+        dispatch(putEditArticleFail(error.message))
     }
   }
 }

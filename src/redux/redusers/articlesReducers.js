@@ -5,6 +5,14 @@ import {
   FETCH_ARTICLE_BY_SLUG_REQUEST,
   FETCH_ARTICLE_BY_SLUG_SUCCESS,
   FETCH_ARTICLE_BY_SLUG_FAILURE,
+  POST_NEW_ARTICLE_REQUEST,
+  POST_NEW_ARTICLE_SUCCESS,
+  POST_NEW_ARTICLE_FAILURE,
+  POST_NEW_ARTICLE_SERVER_FAIL,
+  PUT_EDIT_ARTICLE_REQUEST,
+  PUT_EDIT_ARTICLE_SUCCES,
+  PUT_EDIT_ARTICLE_FAILURE,
+  PUT_EDIT_ARTICLE_SERVER_FAIL,
 } from '../actions/actionTypes'
 
 const articlesInitState = {
@@ -51,6 +59,24 @@ const articlesReducers = (state = articlesInitState, action) => {
         }
         case FETCH_ARTICLE_BY_SLUG_FAILURE:
           return { ...state, loading: false, error: action.payload }
+        // Create new article
+        case POST_NEW_ARTICLE_REQUEST:
+          return { ...state, loading: true, error: null }
+        case POST_NEW_ARTICLE_SUCCESS:
+          return { ...state, loading: false, error: null, statusCreate: true }
+        case POST_NEW_ARTICLE_FAILURE:
+          return { ...state, loading: false, error: action.payload }
+        case POST_NEW_ARTICLE_SERVER_FAIL:
+          return { ...state, loading: false, server: action.payload }
+        // Edit article
+        case PUT_EDIT_ARTICLE_REQUEST:
+          return { ...state, loading: true, error: null }
+        case PUT_EDIT_ARTICLE_SUCCES:
+          return { ...state, loading: false, error: null, statusEdit: true }
+        case PUT_EDIT_ARTICLE_FAILURE:
+          return { ...state, loading: false, error: action.payload }
+        case PUT_EDIT_ARTICLE_SERVER_FAIL:
+          return { ...state, loading: false, server: action.payload }
     default:
       return state
   }

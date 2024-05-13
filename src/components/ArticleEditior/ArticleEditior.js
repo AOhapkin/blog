@@ -76,7 +76,10 @@ const ArticleEditior = () => {
       remove(0)
     }
     if (path !== '/new-article') {
-      if (path !== '/new-article' && statusEdit) history.push('/articles')
+      if (path !== '/new-article' && statusEdit) {
+        history.push('/articles')
+      }
+      
       dispatch(getAnArticleEdit(slug))
       setValue('title', title)
       setValue('description', description)
