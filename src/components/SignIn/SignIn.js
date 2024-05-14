@@ -18,11 +18,11 @@ const SignIn = () => {
   } = useForm({
     mode: 'onSubmit',
   })
-  const reducerUser = useSelector((state) => state.reducerUser)
+  const userReducers = useSelector((state) => state.userReducers)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { loading, error, server, isLogin } = reducerUser
+  const { loading, error, server, isLogin } = userReducers
 
   const onSubmit = (dataUser) => {
     const { email, password } = dataUser
@@ -102,7 +102,7 @@ const SignIn = () => {
             id="password"
             autoComplete="off"
             {...register('password', {
-              required: 'Заполните поле',
+              required: 'This field is required',
               minLength: {
                 value: 6,
                 message: 'This field must contain at least 6 characters',
@@ -127,7 +127,7 @@ const SignIn = () => {
           ) : null}
 
           <button
-            className={classes.sign_up__submit}
+            className={classes.sign_in__submit}
             type="submit"
             value="Login"
           >

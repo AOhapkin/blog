@@ -17,11 +17,11 @@ import ErrorAlert from '../ErrorAlert/ErrorAlert'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 const ArticlePage = () => {
-  const isLogin = useSelector((state) => state.reducerUser.isLogin)
-  const user = useSelector((state) => state.reducerUser.user.username)
-  const article = useSelector((state) => state.reducerArticles.article)
-  const loading = useSelector((state) => state.reducerArticles.loading)
-  const error = useSelector((state) => state.reducerArticles.error)
+  const isLogin = useSelector((state) => state.userReducers.isLogin)
+  const user = useSelector((state) => state.userReducers.user.username)
+  const article = useSelector((state) => state.articlesReducers.article)
+  const loading = useSelector((state) => state.articlesReducers.loading)
+  const error = useSelector((state) => state.articlesReducers.error)
 
   const { slug } = useParams()
 
