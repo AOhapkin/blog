@@ -66,11 +66,9 @@ export const fetchArticlesFailure = (error) => ({
 export const fetchDataByPage = (page) => {
   return async (dispatch) => {
     try {
-      console.log(page)
       dispatch(fetchArticlesRequest())
       const res = await getArticlesByPage(page)
       const { articles, articlesCount } = res.data
-      console.log(articles)
       dispatch(fetchArticlesSuccess(articles, articlesCount))
     } catch (error) {
       dispatch(fetchArticlesFailure(error.message))
