@@ -1,11 +1,13 @@
 .header {
+  max-width: 1440px;
   height: 80px;
-  background-color: rgba(255, 255, 255, 1);
+  margin: 0 auto;
+  padding: 10px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px;
+  background-color: rgba(255, 255, 255, 1);
 
   &__title {
     font-family: 'Inter', sans-serif;
@@ -14,6 +16,10 @@
     line-height: 28px;
     color:  rgba(0, 0, 0, 0.85);
     text-decoration: none;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 
   &__box_un_login {
@@ -24,6 +30,7 @@
   }
 
     &__link_sign_in {
+      padding: 10px 18px;
       display: block;
       font-family: 'Inter', sans-serif;
       font-size: 18px;
@@ -32,6 +39,13 @@
       text-align: center;
       color: rgba(0, 0, 0, 0.85);
       text-decoration: none;
+      border: 1px solid rgba(82, 196, 26, 0);
+      border-radius: 5px;
+
+      &:hover {
+        border: 1px solid rgba(82, 196, 26, 1);
+        background-color: rgba(82, 196, 26, 0.2);
+      }
     }
 
     &__link_sign_up {
@@ -46,6 +60,12 @@
       border: 1px solid rgba(82, 196, 26, 1);
       border-radius: 5px;
       text-decoration: none;
+
+      &:hover {
+        border: 1px solid rgba(82, 196, 26, 1);
+        background-color: rgba(82, 196, 26, 0.2);
+        color: rgba(0, 0, 0, 0.85);
+      }
     }
   
   &__box_on_login {
