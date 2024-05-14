@@ -16,6 +16,7 @@ const ArticlesList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log(currentPage)
     dispatch(fetchDataByPage(currentPage))
   }, [dispatch, currentPage])
 
@@ -32,7 +33,7 @@ const ArticlesList = () => {
         <Pagination
           defaultCurrent={1}
           current={currentPage}
-          pageSize={10}
+          defaultPageSize={5}
           total={articlesCount}
           showSizeChanger={false}
           onChange={(val) => setCurrentPage(val)}
