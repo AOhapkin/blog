@@ -6,6 +6,7 @@ import { v1 as uuidv1 } from 'uuid';
 import classes from './ArticlesListItem.module.scss'
 import { formatDate } from '../../utilities/utilities';
 import { likeArticle, unlikeArticle } from '../../redux/actions/actionCreators'
+import { truncateString } from '../../utilities/utilities'
 
 const ArticlesListItem = ({ item }) => {
   const {
@@ -19,6 +20,7 @@ const ArticlesListItem = ({ item }) => {
     title,
   } = item
   const { username, image } = author
+  console.log(image)
   const isLogin = useSelector((state) => state.userReducers.isLogin)
   const dispatch = useDispatch()
   
@@ -33,7 +35,7 @@ const ArticlesListItem = ({ item }) => {
       <div className={classes.item__box_info}>
         <div className={classes.item__box_title}>
           <Link to={`/articles/${slug}`}>
-            <h5 className={classes.item__title}>{title}</h5>
+            <h5 className={classes.item__title}>{truncateString(title, 50)}</h5>
           </Link>
           <label className={classes.item__label_button}>
             <button

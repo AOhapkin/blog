@@ -8,3 +8,11 @@ export const formatDate = (date) => {
     return format(dateISO, 'MMMM d, yyyy')
   }
 }
+
+export const truncateString = (str, maxLength) => {
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength - 3) + '...';
+  } else {
+    return str;
+  }
+}
