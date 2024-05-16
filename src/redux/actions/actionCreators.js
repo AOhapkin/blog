@@ -161,7 +161,7 @@ export const loginUser = (dataUser) => {
       }
       dispatch(postLoginSuccess(user))
     } catch (error) {
-      if (error.message === '422')
+      if (error.status === '422')
         dispatch(postLoginServerFail(error))
       else
         dispatch(postLoginFail(error.message))

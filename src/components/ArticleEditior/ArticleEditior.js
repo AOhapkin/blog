@@ -14,13 +14,13 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import classes from './ArticleEditior.module.scss'
 
 const ArticleEditior = () => {
-  const loading = useSelector((state) => state.reducerArticles.loading)
-  const error = useSelector((state) => state.reducerArticles.error)
-  const article = useSelector((state) => state.reducerArticles.article)
+  const loading = useSelector((state) => state.articlesReducers.loading)
+  const error = useSelector((state) => state.articlesReducers.error)
+  const article = useSelector((state) => state.articlesReducers.article)
   const statusCreate = useSelector(
-    (state) => state.reducerArticles.statusCreate,
+    (state) => state.articlesReducers.statusCreate,
   )
-  const statusEdit = useSelector((state) => state.reducerArticles.statusEdit)
+  const statusEdit = useSelector((state) => state.articlesReducers.statusEdit)
   const { title, description, body, tagList } = article
   const history = useHistory()
   const path = history.location.pathname
