@@ -42,6 +42,8 @@ const SignIn = () => {
     }
   }, [isLogin, history, reset])
 
+  console.log(error)
+
   return (
     <>
       {error ? <ErrorAlert message={error} /> : null}
