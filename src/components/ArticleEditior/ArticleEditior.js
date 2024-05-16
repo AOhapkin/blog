@@ -89,7 +89,8 @@ const ArticleEditior = () => {
         append({ tag })
       })
     }
-  }, [path, history, title, statusCreate, statusEdit, reset, remove, dispatch, slug, setValue, description, body, tagList, append])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path, history, title, description, body])
 
   return (
     <>
@@ -213,7 +214,7 @@ const ArticleEditior = () => {
               type="button"
               onClick={() => {
                 const newTagValue = getValues('newTag')
-                if (newTagValue.trim() !== '') {
+                if (newTagValue && newTagValue.trim() !== '') {
                   append({ tag: newTagValue })
                 }
                 resetField('newTag')
