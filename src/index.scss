@@ -1,6 +1,12 @@
 @import '~normalize.css/normalize.css';
 @import '~reset-css/reset.css';
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgba(235, 238, 243, 1);
 }

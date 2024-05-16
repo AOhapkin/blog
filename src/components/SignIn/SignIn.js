@@ -49,7 +49,7 @@ const SignIn = () => {
       <div className={classes.sign_in}>
         <h1 className={classes.sign_in__title}>Sign In</h1>
         <form
-          className={classes.sign_in__forms}
+          className={classes.sign_in__form}
           onSubmit={handleSubmit(onSubmit)}
         >
           {/* email */}
