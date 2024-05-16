@@ -1,6 +1,10 @@
 @import '~normalize.css/normalize.css';
 @import '~reset-css/reset.css';
 
+body {
+  background-color: rgba(235, 238, 243, 1);
+}
+
 a {
   text-decoration: none;
 }
