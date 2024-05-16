@@ -20,7 +20,6 @@ const ArticlesListItem = ({ item }) => {
     title,
   } = item
   const { username, image } = author
-  console.log(image)
   const isLogin = useSelector((state) => state.userReducers.isLogin)
   const dispatch = useDispatch()
   

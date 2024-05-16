@@ -187,7 +187,7 @@ const ProfileEditor = () => {
             )}
           />
           <button
-            className={classes.profile_edit__button_submit}
+            className={classes.profile_edit__submit}
             type="submit"
             value="Create"
           >
