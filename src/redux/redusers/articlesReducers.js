@@ -102,7 +102,7 @@ const articlesReducers = (state = articlesInitState, action) => {
         case DELETE_ARTICLE_REQUEST:
           return { ...state, loading: true, error: null }
         case DELETE_ARTICLE_SUCCESS:
-          return { ...state, loading: false, error: null, statusDelete: true }
+          return { ...state, loading: false, error: null, statusDelete: true, statusEdit: false }
         case DELETE_ARTICLE_FAILURE:
           return { ...state, loading: false, error: action.payload }
         case DELETE_ARTICLE_SERVER_FAIL:
