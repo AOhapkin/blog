@@ -11,14 +11,14 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 const ArticlesList = () => {
   const articlesReducers = useSelector((state) => state.articlesReducers)
-  const { articles, articlesCount, error, loading } = articlesReducers
+  const { articles, articlesCount, error, loading, statusDelete, statusEdit, statusCreate } = articlesReducers
   const [currentPage, setCurrentPage] = useState(1)
   const dispatch = useDispatch()
 
   useEffect(() => {
     console.log(currentPage)
     dispatch(fetchDataByPage(currentPage))
-  }, [dispatch, currentPage])
+  }, [dispatch, currentPage, statusDelete, statusEdit, statusCreate])
 
   return (
     <main className={classes.main}>

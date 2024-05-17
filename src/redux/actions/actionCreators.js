@@ -219,21 +219,27 @@ export const updateUser = (dataUser) => {
 
 // New article
 
-export const postArticle = () => ({ type: POST_NEW_ARTICLE_REQUEST })
+export const postArticle = () => ({
+  type: POST_NEW_ARTICLE_REQUEST,
+  statusCreate: true
+})
 
 export const postArticleSuccess = (article) => ({
   type: POST_NEW_ARTICLE_SUCCESS,
   payload: article,
+  statusCreate: false
 })
 
 export const postArticleFail = (error) => ({
   type: POST_NEW_ARTICLE_FAILURE,
   payload: error,
+  statusCreate: false
 })
 
 export const postArticleServerFail = (error) => ({
   type: POST_NEW_ARTICLE_SERVER_FAIL,
   payload: error,
+  statusCreate: false
 })
 
 export const createNewArticle = (newArticleData) => {
