@@ -24,10 +24,9 @@
       color: rgba(38, 38, 38, 1);
     }
 
-    &__forms {
+    &__form {
       display: flex;
       flex-direction: column;
-      margin-top: 21px;
       gap: 2px;
     }
 
@@ -98,6 +97,12 @@
       border: 1px solid rgba(245, 34, 45, 1);
       border-radius: 4px;
       color: rgba(245, 34, 45, 1);
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(245, 34, 45, 0.2);
+      }
     }
 
     &__button_add {
@@ -111,21 +116,31 @@
       border: 1px solid rgba(24, 144, 255, 1);
       border-radius: 4px;
       color: rgba(24, 144, 255, 1);
+      background-color: white;
+
+      &:hover {
+        background-color: rgba(24, 144, 255, 0.2);
+      }
     }
 
     &__button_submit {
-      width: 319px;
-      height: 40px;
       margin-top: 21px;
+      width: 319px;
       padding: 8px 16px 8px 16px;
       border-radius: 4px;
-      background: rgba(24, 144, 255, 1);
+      background-color: rgba(24, 144, 255, 1);
+      border-color: rgba(24, 144, 255, 1);
       font-family: 'Roboto', sans-serif;
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
       text-align: center;
       color: rgba(255, 255, 255, 1);
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
 }
 

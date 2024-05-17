@@ -107,7 +107,7 @@ const ArticleEditior = () => {
           <h1 className={classes.article__title}>Create new article</h1>
         ) : null}
         <form
-          className={classes.article__forms}
+          className={classes.article__form}
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className={classes.article__label} htmlFor="title">
