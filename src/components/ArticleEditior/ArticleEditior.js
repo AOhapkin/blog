@@ -17,10 +17,10 @@ const ArticleEditior = () => {
   const loading = useSelector((state) => state.articlesReducers.loading)
   const error = useSelector((state) => state.articlesReducers.error)
   const article = useSelector((state) => state.articlesReducers.article)
-  const statusCreate = useSelector(
-    (state) => state.articlesReducers.statusCreate,
-  )
-  const statusEdit = useSelector((state) => state.articlesReducers.statusEdit)
+  // const statusCreate = useSelector(
+  //   (state) => state.articlesReducers.statusCreate,
+  // )
+  // const statusEdit = useSelector((state) => state.articlesReducers.statusEdit)
   const { title, description, body, tagList } = article
   const history = useHistory()
   const path = history.location.pathname
@@ -61,24 +61,27 @@ const ArticleEditior = () => {
         tagList: formatTagList,
       },
     }
-    if (path === '/new-article') dispatch(createNewArticle(article))
-    else {
+    if (path === '/new-article') {
+      dispatch(createNewArticle(article))
+      history.push('/articles')
+    } else {
       dispatch(updateArticle(article, slug))
+      history.push('/articles')
     }
   }
 
   useEffect(() => {
     if (path === '/new-article') {
-      if (path === '/new-article' && statusCreate) {
-        history.push('/articles')
-      }
+      // if (path === '/new-article') {
+      //   history.push('/articles')
+      // }
       reset()
       remove(0)
     }
     if (path !== '/new-article') {
-      if (path !== '/new-article' && statusEdit) {
-        history.push('/articles')
-      }
+      // if (path !== '/new-article') {
+      //   history.push('/articles')
+      // }
       
       dispatch(getArticleForEdit(slug))
       setValue('title', title)
