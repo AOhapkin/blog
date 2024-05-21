@@ -12,12 +12,13 @@ const Header = () => {
   const currentImage = useSelector((state) => state.userReducers.user.image)
   const history = useHistory()
   const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
-    if (isLogin) {
+    if (token) {
       dispatch(setCurrentUserAction())
     }
-  }, [dispatch, history, isLogin, currentUsername, currentImage])
+  }, [dispatch, history, isLogin, currentUsername, currentImage, token])
 
   const onLogoutButtonClickHandler = () => {
     dispatch(logout())
