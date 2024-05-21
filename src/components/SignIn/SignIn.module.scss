@@ -75,9 +75,11 @@
 
 .form_text_error {
   // margin-top: 2px;
-  margin-bottom: 10px;
+  position: relative;
+  top: -15px;
+  // margin-bottom: 10px;
   display: flex;
-  color: #bf1650;
+  color: rgba(245, 34, 45, 1);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
