@@ -69,7 +69,7 @@ const ArticlePage = () => {
               <div className={classes.article__likes_wrapper}>
                 <button
                   className={
-                    favorited
+                    favorited && isLogin
                       ? classes.article__like_button_active
                       : classes.article__like_button
                   }

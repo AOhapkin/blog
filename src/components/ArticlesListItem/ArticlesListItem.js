@@ -23,7 +23,7 @@ const ArticlesListItem = ({ item }) => {
   const isLogin = useSelector((state) => state.userReducers.isLogin)
   const dispatch = useDispatch()
   
-  useEffect(() => {}, [slug, favorited, favoritesCount])
+  useEffect(() => {}, [slug, favorited, favoritesCount, isLogin])
 
   const handleLikeClick = () => {
     !favorited ? dispatch(likeArticle(slug)) : dispatch(unlikeArticle(slug))
@@ -39,7 +39,7 @@ const ArticlesListItem = ({ item }) => {
           <label className={classes.item__label_button}>
             <button
               className={
-                favorited
+                favorited && isLogin
                   ? classes.item__button_like_active
                   : classes.item__button_like
               }
