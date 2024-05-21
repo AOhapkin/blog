@@ -138,7 +138,7 @@ const ArticleEditior = () => {
             className={`${classes.article__input_description} ${
               errors.description ? classes.article__input_error : ''
             }`}
-            placeholder="Title"
+            placeholder="Short description"
             type="text"
             id="description"
             autoComplete="off"
