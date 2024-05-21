@@ -82,15 +82,15 @@ const ArticlePage = () => {
               </div>
             </div>
 
-            <div className={classes.article__tags_wrapper}>
+            <ul className={classes.article__tags_list}>
               {tagList.map((el) => {
                 return (
-                  <span className={classes.article__tag} key={uuidv1()}>
+                  <li className={classes.article__tags_item} key={uuidv1()}>
                     {el}
-                  </span>
+                  </li>
                 )
               })}{' '}
-            </div>
+            </ul>
 
             <span className={classes.article__description}>{description}</span>
           </div>

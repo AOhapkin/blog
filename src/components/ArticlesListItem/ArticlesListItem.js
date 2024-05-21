@@ -49,15 +49,15 @@ const ArticlesListItem = ({ item }) => {
             <p className={classes.item__counter_like}>{favoritesCount}</p>
           </label>
         </div>
-        <div className={classes.item__box_tags}>
+        <ul className={classes.item__tags_list}>
           {tagList.map((el) => {
             return (
-              <span className={classes.item__tag} key={uuidv1()}>
+              <li className={classes.item__tags_item} key={uuidv1()}>
                 {el}
-              </span>
+              </li>
             )
           })}
-        </div>
+        </ul>
         <p className={classes.item__description}>{description}</p>
       </div>
 

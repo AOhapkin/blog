@@ -77,17 +77,15 @@
             color: rgba(0, 0, 0, 0.75);
           }
       
-      &__tags_wrapper {
+      &__tags_list {
         width: 400px;
         padding-top: 4px;
         display: flex;
         gap: 8px;
-        overflow-y: scroll;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        flex-wrap: wrap;
       }
 
-        &__tag {
+        &__tags_item {
           white-space: nowrap;
           display: block;
           padding: 2px 3px;
