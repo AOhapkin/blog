@@ -78,9 +78,10 @@
   }
   
   .error_message {
-    margin-top: 4px;
+    position: relative;
+    top: -15px;
     display: flex;
-    color: #bf1650;
+    color: rgba(245, 34, 45, 1);
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
   }
