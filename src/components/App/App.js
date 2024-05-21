@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import ArticlesList from '../ArticlesList/ArticlesList'
 import ArticlePage from '../ArticlePage/ArticlePage';
@@ -20,6 +20,9 @@ const App = () => {
         <Route exact path="/profile" component={ProfileEditor} />
         <Route exact path="/new-article" component={ArticleEditior} />
         <Route exact path="/articles/:slug/edit" component={ArticleEditior} />
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </Router>
   )

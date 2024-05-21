@@ -37,10 +37,10 @@ const SignIn = () => {
 
   useEffect(() => {
     if (isLogin) {
-      history.push('/articles')
       reset()
+      history.push('/articles')
     }
-  }, [isLogin, history, reset])
+  }, [isLogin, history])
 
   return (
     <>

@@ -17,6 +17,7 @@ const ArticleEditior = () => {
   const loading = useSelector((state) => state.articlesReducers.loading)
   const error = useSelector((state) => state.articlesReducers.error)
   const article = useSelector((state) => state.articlesReducers.article)
+  const isLogin = useSelector((state) => state.userReducers.isLogin)
   // const statusCreate = useSelector(
   //   (state) => state.articlesReducers.statusCreate,
   // )
@@ -71,6 +72,9 @@ const ArticleEditior = () => {
   }
 
   useEffect(() => {
+    if (!isLogin) {
+      history.push('/sign-in')
+    }
     if (path === '/new-article') {
       // if (path === '/new-article') {
       //   history.push('/articles')
