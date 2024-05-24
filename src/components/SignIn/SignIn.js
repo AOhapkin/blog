@@ -14,7 +14,6 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     mode: 'onSubmit',
   })
@@ -35,13 +34,7 @@ const SignIn = () => {
     dispatch(loginUser(user))
   }
 
-  useEffect(() => {
-    if (isLogin) {
-      reset()
-      history.push('/articles')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLogin, history])
+  useEffect(() => {}, [isLogin])
 
   return (
     <>

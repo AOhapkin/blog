@@ -30,14 +30,15 @@ const ArticlesList = () => {
         )}
       </ul>
       <div className={classes.main__pagination}>
-        <Pagination
+        { !loading ? <Pagination
           defaultCurrent={1}
           current={currentPage}
           defaultPageSize={5}
           total={articlesCount}
           showSizeChanger={false}
           onChange={(val) => setCurrentPage(val)}
-        />
+        /> : null }
+        
       </div>
     </main>
   )
