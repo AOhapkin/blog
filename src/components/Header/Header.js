@@ -51,8 +51,11 @@ const Header = () => {
             </Link>
             <img
               className={classes.header__profile_avatar}
-              src={!currentImage ? defaultUserAvatar : currentImage}
+              src={currentImage}
               alt="user avatar"
+              onError={(e) => {
+                e.target.src = defaultUserAvatar;
+              }}
             />
           </div>
           <button

@@ -15,6 +15,7 @@ import {
 } from '../../redux/actions/actionCreators'
 import ErrorAlert from '../ErrorAlert/ErrorAlert'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
+import defaultUserAvatar from '../../resources/defaultUserAvatar.svg'
 
 const ArticlePage = () => {
   const isLogin = useSelector((state) => state.userReducers.isLogin)
@@ -105,6 +106,9 @@ const ArticlePage = () => {
                 className={classes.article__author_image}
                 src={image}
                 alt="user avatar"
+                onError={(e) => {
+                  e.target.src = defaultUserAvatar;
+                }}
               />
             </div>
             {username === user ? (

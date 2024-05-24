@@ -7,6 +7,7 @@ import classes from './ArticlesListItem.module.scss'
 import { formatDate } from '../../utilities/utilities';
 import { likeArticle, unlikeArticle } from '../../redux/actions/actionCreators'
 import { truncateString } from '../../utilities/utilities'
+import defaultUserAvatar from '../../resources/defaultUserAvatar.svg'
 
 const ArticlesListItem = ({ item }) => {
   const {
@@ -72,6 +73,9 @@ const ArticlesListItem = ({ item }) => {
           className={classes.item__avatar}
           src={image}
           alt="user avatar"
+          onError={(e) => {
+            e.target.src = defaultUserAvatar;
+          }}
         />
       </div>
     </li>
