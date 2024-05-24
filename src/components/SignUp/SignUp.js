@@ -91,7 +91,7 @@ const SignUp = () => {
           />
 
           {server.errors.username ? (
-            <p className={classes.sign_up__text_error}>
+            <p className={classes.form_text_error}>
               {server.errors.username}
             </p>
           ) : null}
@@ -126,7 +126,7 @@ const SignUp = () => {
             )}
           />
           {server.errors.email ? (
-            <p className={classes.sign_up__text_error}>{server.errors.email}</p>
+            <p className={classes.form_text_error}>{server.errors.email}</p>
           ) : null}
 
           {/* password */}
