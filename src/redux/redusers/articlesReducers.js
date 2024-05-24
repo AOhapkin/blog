@@ -39,6 +39,9 @@ const articlesInitState = {
     createdAt: null,
     body: null,
   },
+  statusCreate: false,
+  statusEdit: false,
+  statusDelete: false,
 }
 
 const articlesReducers = (state = articlesInitState, action) => {
@@ -53,6 +56,9 @@ const articlesReducers = (state = articlesInitState, action) => {
         articlesCount: action.payload.articlesCount,
         loading: false,
         error: null,
+        statusCreate: false,
+        statusEdit: false,
+        statusDelete: false,
       }
     case FETCH_ALL_ARTICLES_FAILURE:
       return { ...state, loading: false, error: action.payload }
@@ -72,7 +78,7 @@ const articlesReducers = (state = articlesInitState, action) => {
         case POST_NEW_ARTICLE_REQUEST:
           return { ...state, loading: true, error: null }
         case POST_NEW_ARTICLE_SUCCESS:
-          return { ...state, loading: false, error: null, statusCreate: true }
+          return { ...state, loading: false, error: null, statusCreate: true, statusEdit: false }
         case POST_NEW_ARTICLE_FAILURE:
           return { ...state, loading: false, error: action.payload }
         case POST_NEW_ARTICLE_SERVER_FAIL:
@@ -93,7 +99,7 @@ const articlesReducers = (state = articlesInitState, action) => {
         case PUT_EDIT_ARTICLE_REQUEST:
           return { ...state, loading: true, error: null }
         case PUT_EDIT_ARTICLE_SUCCES:
-          return { ...state, loading: false, error: null, statusEdit: true }
+          return { ...state, loading: false, error: null, statusEdit: true, statusCreate: false }
         case PUT_EDIT_ARTICLE_FAILURE:
           return { ...state, loading: false, error: action.payload }
         case PUT_EDIT_ARTICLE_SERVER_FAIL:
@@ -102,7 +108,7 @@ const articlesReducers = (state = articlesInitState, action) => {
         case DELETE_ARTICLE_REQUEST:
           return { ...state, loading: true, error: null }
         case DELETE_ARTICLE_SUCCESS:
-          return { ...state, loading: false, error: null, statusDelete: true, statusEdit: false }
+          return { ...state, loading: false, error: null, statusDelete: true, statusEdit: false, statusCreate: false }
         case DELETE_ARTICLE_FAILURE:
           return { ...state, loading: false, error: action.payload }
         case DELETE_ARTICLE_SERVER_FAIL:
