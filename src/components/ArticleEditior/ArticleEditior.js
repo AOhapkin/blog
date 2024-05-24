@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useForm, useFieldArray } from 'react-hook-form'
@@ -18,6 +18,7 @@ const ArticleEditior = () => {
   const error = useSelector((state) => state.articlesReducers.error)
   const article = useSelector((state) => state.articlesReducers.article)
   const isLogin = useSelector((state) => state.userReducers.isLogin)
+  const [lastTag, setLastTag] = useState('');
   // const statusCreate = useSelector(
   //   (state) => state.articlesReducers.statusCreate,
   // )
@@ -51,9 +52,19 @@ const ArticleEditior = () => {
     name: 'tagList',
   })
 
+  const onLastTagChange = (evt) => {
+    setLastTag(evt.target.value);
+    console.log(evt.target.value)
+  }
+
   const onSubmit = (dataArticle) => {
     const { title, description, body, tagList } = dataArticle
     const formatTagList = tagList.map((el) => el.tag)
+    if (lastTag.trim()) {
+      console.log('last tag: ', lastTag)
+      formatTagList.push(lastTag.trim())
+      console.log(formatTagList)
+    }
     const article = {
       article: {
         title: title,
@@ -208,6 +219,8 @@ const ArticleEditior = () => {
               className={classes.article__input_tag}
               placeholder="Tag"
               {...register('newTag')}
+              value={lastTag}
+              onChange={onLastTagChange}
             />
             <button
               className={classes.article__button_del}
@@ -225,12 +238,16 @@ const ArticleEditior = () => {
                   append({ tag: newTagValue })
                 }
                 resetField('newTag')
+                setLastTag('')
               }}
             >
               Add tag
             </button>
           </div>
-          <button className={classes.article__button_submit} type="submit">
+          <button
+            className={classes.article__button_submit}
+            type="submit"
+          >
             Send
           </button>
         </form>
