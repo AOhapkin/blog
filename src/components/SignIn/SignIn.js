@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
@@ -19,7 +19,6 @@ const SignIn = () => {
   })
   const userReducers = useSelector((state) => state.userReducers)
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const { loading, error, server, isLogin } = userReducers
 
